@@ -21,7 +21,7 @@ function($, _, Backbone, Navigation, navigationView, mainView) {
   // creation.
   var app = {
     // The root path to run the application.
-    root: "/",
+    root: "/Backbone",
     nav: new Navigation
   };
   navigationView.app = app;
