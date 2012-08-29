@@ -1,0 +1,11 @@
++ Move Navigation and views to router.js
++ Make Navigation a collection of Page objects
+  - each Page could have a title, url, template or html attribute
+  - Navigation could have a getPageByUrl() method
++ Remove HTML from Navigation Object
++ Fix: Once you are already on the 'next >>' link (#/next), you can not
+  click the 'next >>' link again to move to the next step with out
+  first clicking on another page.
++ Fix: Once you've already advanced through the system, if you go backwards
+  and then click the 'next >>' link again, it does not move you
+  forward.
