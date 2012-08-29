@@ -1,20 +1,22 @@
 define([
   // Application.
-  "app",
-
+  "app"
   // Modules.
-  "modules/example"
+  //"modules/example"
 ],
 
-function(app, Example) {
+function(app /*, Example*/) {
 
   // Defining the application router, you can attach sub routers here.
   var Router = Backbone.Router.extend({
     routes: {
-      "": "index"
+      "": "index",
+      "/step/:id": "showStep",
+      "/next": "nextStep"
     },
 
     index: function() {
+      /*
       // Create a layout and associate it with the #main div.
       var layout = new Backbone.Layout({
         el: "#main"
@@ -25,6 +27,16 @@ function(app, Example) {
       
       // Render the layout into the DOM.
       layout.render();
+      */
+      app.nav.set({ 'ci': 0 });
+    },
+
+    showStep: function(id) {
+      app.nav.set({ 'ci': parseInt(id,10) });
+    },
+
+    nextStep: function(id) {
+      app.nav.next();
     }
   });
 

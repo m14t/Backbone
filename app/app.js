@@ -4,18 +4,36 @@ define([
   "lodash",
   "backbone",
 
+  // Navigation
+  'model/navigation',
+
+  // Views
+  "views/navigation/show",
+  "views/main/show",
+
   // Plugins.
   "plugins/backbone.layoutmanager"
 ],
 
-function($, _, Backbone) {
+function($, _, Backbone, Navigation, navigationView, mainView) {
 
   // Provide a global location to place configuration settings and module
   // creation.
   var app = {
     // The root path to run the application.
-    root: "/"
+    root: "/",
+    nav: new Navigation
   };
+  navigationView.app = app;
+
+  // Bind the navigation module events
+  app.nav.bind("change:ci", function(){
+    var ci = app.nav.get('ci') || 0;
+    navigationView.render();
+    mainView.render(
+      app.nav.getCurrentPage().body
+    );
+  });
 
   // Localize or create a new JavaScript Template object.
   var JST = window.JST = window.JST || {};
